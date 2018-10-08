@@ -1,15 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const nodb_controllers = require ('./controllers/nodb-controllers')
 
 const app = express();
 
 app.use(bodyParser.json())
 
-const data = "This string you can just have it be whatever message you want to your future self."
+app.get('/favorites', nodb_controllers.getChar)
+app.post('/addcharacter', nodb_controllers.addChar)
 
-app.get('/data', () => (req, res) => {
-    res.status(200).send(data);
-})
 
 const port = 5000;
 app.listen(port, () => {
